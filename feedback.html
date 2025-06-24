@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Summit Bank Limited | Account Opening Feedback Form | Beyond Numbers...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./assets/icon.png">
+  <style>
+    .step {
+      display: none;
+    }
+    .step.active {
+      display: block;
+    }
+    .navbar-brand img {
+      height: 90px;
+    }
+  </style>
+</head>
+<body>
+   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+<div class="container">
+<a class="navbar-brand" href="/">
+<img src="https://res.cloudinary.com/netpoc-inc/image/upload/v1748184676/summit_logo_awmixv.png" alt="Summit Bank Logo" />
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-lg-end justify-content-center text-center" id="navbarNav">
+<ul class="navbar-nav">
+<li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="/validation.html">NIN Validation</a></li>
+<li class="nav-item"><a class="nav-link" href="/feedback.html">Feedback</a></li>
+</ul>
+</div>
+</div>
+</nav>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+        <h3 class="mb-4 text-center" style="font-size: 36px;">Customer Feedback Form</h3>
+ 
+        <form id="multiStepForm">
+          <!-- Step 1 -->
+          <div class="step active" id="step1">
+            <div class="mb-3">
+          <label for="firstName" class="form-label" required>Full Name</label>
+          <input class="form-control" type="text" placeholder="Enter Full Name" class="form-control" id="firstName" required>
+        </div>
+       
+        <div class="mb-3">
+            <label class="form-label" for="rating">Overall Customer Experience:</label>
+            <div>
+                <select class="form-select" id="rating" name="rating" required>
+                <option value="">-- Select --</option>
+                <option value="5">Excellent</option>
+                <option value="4">Very Good</option>
+                <option value="3">Good</option>
+                <option value="2">Fair</option>
+                <option value="1">Poor</option>
+            </select>
+            </div>  
+        </div>
+        <div class="mb-3">
+            <label class="form-label">How Seamless Was The Account Opening Process </label>
+            <div>
+                <textarea placeholder="Describe your experience here..." rows="3" class="form-control" name="account_opening"></textarea>
+            </div>
+        </div>
+        <!-- First Select: Yes/No -->
+        <div class="mb-3">
+            <label for="optionSelect" class="form-label">Did You Get A Notiication When Your Account Was Opened?</label>
+            <select class="form-select" id="optionSelect" onchange="toggleFollowUp()">
+            <option value="">-- Select --</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            </select>
+        </div>
+ 
+        <!-- Second Select: Shown only if "No" is selected -->
+        <div class="mb-3" id="followUpSelectWrapper" style="display: None;">
+            <label for="reasonSelect" class="form-label">If Yes Kindly Indicate If It Was Recieved Via Sms Or Email</label>
+            <select class="form-select" id="reasonSelect" required>
+            <option value="">Select a reason</option>
+            <option value="Don't kNow anyone">SMS</option>
+            <option value="Not interested">Email</option>
+            </select>
+        </div>
+        <div class="mb-3">
+              <label class="form-label" for="agreement">Was Your Name Arrangement In The Correct Order? </label>
+                <div>
+                    <select class="form-select" id="agreement" name="AGREEMENT" required>
+                    <option value="">-- Select --</option>
+                    <option value="2">Yes</option>
+                    <option value="1">No</option>
+                </select>
+                </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="transaction">Were You Able To Do Any Transaction On Your Account? If Yes, Please Indicate Transaction Type </label>
+       
+                <div>
+                    <label class="form-label"><input type="checkbox"> Deposits  </label>
+                </div>
+                <div>
+                    <label class="form-label"><input type="checkbox"> Withdrawals  </label>
+                </div>
+                <div>
+                    <label class="form-label"><input type="checkbox"> Transfers  </label>
+                </div>
+                <div>
+                    <label class="form-label"><input type="checkbox"> Bills Payments  </label>
+                </div>
+                <div>
+                    <label class="form-label"><input type="checkbox"> Loans and Credits  </label>
+                </div>
+                <div>
+                    <label class="form-label"><input type="checkbox"> Foreign Exchange Transaction  </label>
+                </div>
+                <div>
+                    <label class="form-label"><input type="checkbox"> Fees And Services Charges   </label>
+                </div>
+                <div>
+                    <label class="form-label"><input type="checkbox"> Interest Payment  </label>
+                </div>
+            </div>
+            <i class="fa-solid fa-chevron-right"></i>
+            <div class="d-grid">
+              <button style="background-color: #AF1F23; color: aliceblue;" type="button" class="btn btn-light btn-lg" onclick="nextStep()">Next <i class="bi bi-chevron-right ms-2"></i></button>
+            </div>
+          </div>
+ 
+          <!-- Step 2 -->
+          <div class="step" id="step2">            
+            <div class="mb-3">
+                <label for="account">Were You Able To Carry Out Own Account Transfers? If Yes, Were You Chareged For This Service? </label>
+                <div>
+                    <select class="form-select" id="account" name="ACCOUNT" required>
+                    <option value="">-- Select --</option>
+                    <option value="2">Yes</option>
+                    <option value="1">No</option>
+                </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="observation">Are There Any Observation From The Transaction /Service To Be Modified?</label>
+                <div>
+                    <select class="form-select" id="observation" name="OBSERVATION" required>
+                    <option value="">-- Select --</option>
+                    <option value="3">Yes</option>
+                    <option value="2">No</option>
+                    <option value="1">Maybe</option>
+                </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="number">Was Your Account Number Masked In Your Transaction Alert?</label>
+                <div>
+                    <select class="form-select" id="number" name="NUMBER" required>
+                    <option value="">-- Select --</option>
+                    <option value="2">Yes</option>
+                    <option value="1">No</option>      
+                </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="captured">Was Your Transaction Description Correctly Captured In The Transaction Alert?</label>
+                <select class="form-select" id="captured" name="CAPTURED" required>
+                    <option value="">-- Select --</option>
+                    <option value="2">Yes</option>
+                    <option value="1">No</option>      
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="balance">Did You Get Your Account Balance In The Correct Currency Of The Transaction?</label>
+                <div>
+                    <select class="form-select" id="balance" name="BALANCE" required>
+                        <option value="">-- Select --</option>
+                        <option value="2">Yes</option>
+                        <option value="1">No</option>      
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="position">Does Your Current Balance Reflect The True Position Of Your Account Or Are There Discrepancies In Your Balances.</label>
+                <div>
+                    <select class="form-select" id="position" name="POSITION" required>
+                    <option value="">-- Select --</option>
+                    <option value="2">Yes It Does</option>
+                    <option value="1">No It Doesn't</option>      
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="charges">After Consummating A Transaction, Were All The Charges Captured In Your Transaction Alert?</label>
+                <select class="form-select" id="charges" name="CHARGES" required>
+                    <option value="">-- Select --</option>
+                    <option value="2">Yes</option>
+                    <option value="1">No</option>      
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="overdraw">Were You Able To Perform A Transaction Higher Than Your Current Balance(Overdraw Your Account) </label>
+                <select class="form-select" id="overdraw" name="OVERDRAW" required>
+                    <option value="">-- Select --</option>
+                    <option value="2">Yes</option>
+                    <option value="1">No</option>      
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Provide Any Comments To Any Other Outcome Not Mentioned Or Recommendation</label>
+                <textarea rows="3" placeholder="Please enter your comments here..." class="form-control" name="comments"></textarea>
+            </div>
+            <div class="d-flex justify-content-between">
+              <button type="button" class="btn btn-secondary btn-lg" onclick="prevStep()">Back</button>
+              <button style="background-color: #AF1F23; color: aliceblue;" type="submit" class="btn btn-lg">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+ 
+  <script>
+    let currentStep = 1;
+ 
+    function showStep(step) {
+      document.querySelectorAll('.step').forEach((el) => el.classList.remove('active'));
+      document.getElementById('step' + step).classList.add('active');
+    }
+ 
+    function nextStep() {
+      currentStep++;
+      showStep(currentStep);
+    }
+ 
+    function prevStep() {
+      currentStep--;
+      showStep(currentStep);
+    }
+ 
+    document.getElementById('multiStepForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Form submitted!');
+    });
+ 
+    function toggleFollowUp() {
+      const mainSelect = document.getElementById('optionSelect');
+      const followUp = document.getElementById('followUpSelectWrapper');
+      if (mainSelect.value === 'Yes') {
+        followUp.style.display = 'block';
+      } else {
+        followUp.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Summit Bank - Home</title>
+<link rel="icon" href="https://res.cloudinary.com/netpoc-inc/image/upload/v1748184688/Logo_1_trmpwd.png" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .navbar-brand img {
+      height: 90px;
+    }
+    .carousel,
+    .carousel-inner,
+    .carousel-item,
+    .carousel-item img {
+      height: calc(100vh - 90px); /* Adjust if navbar height changes */
+    }
+ 
+    .carousel-item img {
+      width: 100%;
+      object-fit: cover;
+    }
+    footer {
+      background-color: #343a40;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    footer a {
+      color: #ffc107;
+    }
+</style>
+</head>
+<body>
+ 
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+<div class="container">
+<a class="navbar-brand" href="/">
+<img src="https://res.cloudinary.com/netpoc-inc/image/upload/v1748184676/summit_logo_awmixv.png" alt="Summit Bank Logo" />
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-lg-end justify-content-center text-center" id="navbarNav">
+<ul class="navbar-nav">
+<li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="/validation.html">NIN Validation</a></li>
+<li class="nav-item"><a class="nav-link" href="/feedback.html">Feedback</a></li>
+</ul>
+</div>
+</div>
+</nav>
+ 
+<!-- Carousel -->
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+<div class="carousel-inner">
+
+<div class="carousel-item active">
+<img src="https://res.cloudinary.com/netpoc-inc/image/upload/v1750784412/test_1_x1cvjj.jpg" alt="Slide 1">
+</div>
+<div class="carousel-item">
+<img src="https://res.cloudinary.com/netpoc-inc/image/upload/v1750784409/FAC_7399_yyxach.jpg" alt="Slide 2">
+</div>
+<div class="carousel-item">
+<img src="https://res.cloudinary.com/netpoc-inc/image/upload/v1750784410/FAC_7534_udd2zf.jpg" alt="Slide 3">
+</div>
+<div class="carousel-item">
+<img src="https://res.cloudinary.com/netpoc-inc/image/upload/v1750784409/FAC_7258_z6wiim.jpg" alt="Slide 3">
+</div>
+<div class="carousel-item">
+<img src="https://res.cloudinary.com/netpoc-inc/image/upload/v1750784409/FAC_7398_qjlull.jpg" alt="Slide 3">
+</div>
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+</div>
+ 
+<!-- Footer -->
+<footer>
+<p class="mb-1">&copy; 2025 Summit Bank Ltd. All rights reserved.</p>
+<p class="mb-0">Contact: <a href="mailto:support@summitbankng.com">support@summitbankng.com</a></p>
+</footer>
+ 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
