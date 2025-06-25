@@ -5,8 +5,9 @@
 <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 <link rel="icon" type="image/png" href="https://res.cloudinary.com/netpoc-inc/image/upload/v1748184688/Logo_1_trmpwd.png">
+<link rel="icon" href="https://res.cloudinary.com/netpoc-inc/image/upload/v1748184688/Logo_1_trmpwd.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ID Validation</title>
+<title>Summit Bank | NIN Validation</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
     body {
@@ -63,10 +64,10 @@
 <div class="collapse navbar-collapse justify-content-lg-center justify-content-center text-center" id="navbarNav">
 <ul class="navbar-nav ms-auto"> <!-- Align right -->
 <li class="nav-item">
-<a class="nav-link active" aria-current="page" href="/">Home</a>
+<a class="nav-link" aria-current="page" href="/">Home</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="/validation.html">NIN Validation</a>
+<a class="nav-link active" href="/validation.html">NIN Validation</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="/feedback.html">Feeback</a>
@@ -97,7 +98,7 @@
 <input type="text" class="form-control" id="idNumber" placeholder="Enter NIN or BVN" required>
 </div>
 <button style="background-color: #AF1F23; color: aliceblue;" type="submit" class="btn btn-light w-100">
-<span id="validateBtnText">Validate</span> <i class="bi bi-check ms-2"></i>
+<span id="validateBtnText">Validate </span> <i class="bi bi-check ms-2"></i>
 <span class="spinner-border spinner-border-sm" role="status" id="loadingSpinner"></span>
 </button>
 </form>
@@ -124,42 +125,61 @@
  
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    axios.post("https://apigateway-test.summitbank.com/api/v1/internalvalidate", {
-  number: idNumber,
-  type: idType
-})
-.then(response => {
-  const data = response.data;
-  const user = data?.nibss_response?.[0]?.data;
- 
-  result.innerHTML = `
-<h5 class="mb-3">Validation Result</h5>
-<div class="alert alert-success">✅ ${idType.toUpperCase()} is valid. Details below:</div>
-    ${user.photo ? `<img src="data:image/jpeg;base64,${user.photo}" alt="User Photo" class="img-fluid rounded border" style="max-height: 200px;" />` : '<div class="text-muted">No photo available</div>'}
-<ul class="list-group">
-<li class="list-group-item"><strong>Central ID:</strong> ${user.centralID || 'N/A'}</li>
-<li class="list-group-item"><strong>Surname:</strong> ${user.surname || 'N/A'}</li>
-<li class="list-group-item"><strong>First Name:</strong> ${user.firstname || 'N/A'}</li>
-<li class="list-group-item"><strong>Birth Date:</strong> ${user.birthdate || 'N/A'}</li>
-<li class="list-group-item"><strong>Gender:</strong> ${user.gender || 'N/A'}</li>
-<li class="list-group-item"><strong>Birth Country:</strong> ${user.birthcountry || 'N/A'}</li>
-<li class="list-group-item"><strong>Address:</strong> ${user.residence_AdressLine1 || 'N/A'}</li>
-<li class="list-group-item"><strong>State:</strong> ${user.residence_state || 'N/A'}</li>
-<li class="list-group-item"><strong>Phone:</strong> ${user.telephoneno || 'N/A'}</li>
-<li class="list-group-item"><strong>State of Origin:</strong> ${user.self_origin_state || 'N/A'}</li>
-</ul>
-  `;
-})
-.catch(error => {
-  result.innerHTML = `
-<div class="alert alert-danger">❌ ${error.response?.data || error.message}</div>
-  `;
-})
-.finally(() => {
-  spinner.style.display = "none";
-  validateBtnText.textContent = "Validate";
+document.getElementById('idForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  // Get DOM elements
+  const idType = document.getElementById('idType').value;
+  const idNumber = document.getElementById('idNumber').value;
+  const result = document.getElementById('result');
+  const spinner = document.getElementById('loadingSpinner');
+  const validateBtnText = document.getElementById('validateBtnText');
+
+  // Show loading spinner and update button text
+  spinner.style.display = "inline-block";
+  validateBtnText.textContent = "Validating...";
+
+  try {
+    const response = await axios.post("http://172.29.86.16:30796/api/v1/validate", {
+      number: idNumber,
+      type: idType
+    });
+
+    const data = response.data;
+    const user = data?.nibss_response?.[0]?.data;
+
+    if (!user) {
+      throw new Error("Invalid response format.");
+    }
+
+    result.innerHTML = `
+      <h5 class="mb-3">Validation Result</h5>
+      <div class="alert alert-success">✅ ${idType.toUpperCase()} is valid. Details below:</div>
+      ${user.photo ? `<img src="data:image/jpeg;base64,${user.photo}" alt="User Photo" class="img-fluid rounded border" style="max-height: 200px;" />` : '<div class="text-muted">No photo available</div>'}
+      <ul class="list-group mt-3">
+        <li class="list-group-item"><strong>Central ID:</strong> ${user.centralID || 'N/A'}</li>
+        <li class="list-group-item"><strong>Surname:</strong> ${user.surname || 'N/A'}</li>
+        <li class="list-group-item"><strong>First Name:</strong> ${user.firstname || 'N/A'}</li>
+        <li class="list-group-item"><strong>Birth Date:</strong> ${user.birthdate || 'N/A'}</li>
+        <li class="list-group-item"><strong>Gender:</strong> ${user.gender || 'N/A'}</li>
+        <li class="list-group-item"><strong>Birth Country:</strong> ${user.birthcountry || 'N/A'}</li>
+        <li class="list-group-item"><strong>Address:</strong> ${user.residence_AdressLine1 || 'N/A'}</li>
+        <li class="list-group-item"><strong>State:</strong> ${user.residence_state || 'N/A'}</li>
+        <li class="list-group-item"><strong>Phone:</strong> ${user.telephoneno || 'N/A'}</li>
+        <li class="list-group-item"><strong>State of Origin:</strong> ${user.self_origin_state || 'N/A'}</li>
+      </ul>
+    `;
+  } catch (error) {
+    const message = error.response?.data?.message || error.message || "An unknown error occurred.";
+    result.innerHTML = `
+      <div class="alert alert-danger">❌ ${message}</div>
+    `;
+  } finally {
+    spinner.style.display = "none";
+    validateBtnText.textContent = "Validate";
+  }
 });
-  </script>
+</script>
  
 </body>
 </html>
