@@ -140,7 +140,7 @@ document.getElementById('idForm').addEventListener('submit', async function (e) 
   validateBtnText.textContent = "Validating...";
 
   try {
-    const response = await axios.post("https://apigateway-test.summitbankng.com/api/v1/validate", {
+    const response = await axios.post("http://172.29.86.16:30796/api/v1/validate", {
       number: idNumber,
       type: idType
     });
