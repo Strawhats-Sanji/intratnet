@@ -1,1 +1,1 @@
-/api/v1/validate http://172.29.86.16:30796 200
+/api/v1/validate http://172.29.86.16:30796/api/v1/validate 200
