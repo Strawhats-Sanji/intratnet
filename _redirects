@@ -1,2 +1,2 @@
-/api/v1/validate https://intranet.summitbankng.com/v1/validate 200
-/submit-feedback https://intranet.summitbankng.com//submit-feedback 200
+/api/v1/validate https://intranet.summitbankng.com/api/v1/validate 200
+/submit-feedback https://intranet.summitbankng.com/submit-feedback 200
