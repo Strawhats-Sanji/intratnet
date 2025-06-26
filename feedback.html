@@ -333,7 +333,7 @@ document.getElementById('multiStepForm').addEventListener('submit', async functi
   };
 
   try {
-    const res = await fetch('https://3851-41-184-88-38.ngrok-free.app/submit-feedback', {
+    const res = await fetch('/submit-feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
