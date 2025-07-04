@@ -156,18 +156,18 @@ document.getElementById('idForm').addEventListener('submit', async function (e) 
     result.innerHTML = `
       <h5 class="mb-3">Validation Result</h5>
       <div class="alert alert-success">✅ ${idType.toUpperCase()} is valid. Details below:</div>
-      ${user.photo ? `<img src="data:image/jpeg;base64,${user.photo}" alt="User Photo" class="img-fluid rounded border" style="max-height: 200px;" />` : '<div class="text-muted">No photo available</div>'}
+      ${user.photo ? `<img src="data:image/jpeg;base64,${user.photo || user.face_image}" alt="User Photo" class="img-fluid rounded border" style="max-height: 200px;" />` : '<div class="text-muted">No photo available</div>'}
       <ul class="list-group mt-3">
         <li class="list-group-item"><strong>Central ID:</strong> ${user.centralID || 'N/A'}</li>
         <li class="list-group-item"><strong>Surname:</strong> ${user.surname || 'N/A'}</li>
-        <li class="list-group-item"><strong>First Name:</strong> ${user.firstname || 'N/A'}</li>
-        <li class="list-group-item"><strong>Birth Date:</strong> ${user.birthdate || 'N/A'}</li>
+        <li class="list-group-item"><strong>First Name:</strong> ${user.firstname || user.first_name || 'N/A'}</li>
+        <li class="list-group-item"><strong>Birth Date:</strong> ${user.birthdate || user.DateOfBirth || 'N/A'}</li>
         <li class="list-group-item"><strong>Gender:</strong> ${user.gender || 'N/A'}</li>
-        <li class="list-group-item"><strong>Birth Country:</strong> ${user.birthcountry || 'N/A'}</li>
+        <li class="list-group-item"><strong>Birth Country:</strong> ${user.birthcountry || user.nationality || 'N/A'}</li>
         <li class="list-group-item"><strong>Address:</strong> ${user.residence_AdressLine1 || 'N/A'}</li>
         <li class="list-group-item"><strong>State:</strong> ${user.residence_state || 'N/A'}</li>
-        <li class="list-group-item"><strong>Phone:</strong> ${user.telephoneno || 'N/A'}</li>
-        <li class="list-group-item"><strong>State of Origin:</strong> ${user.self_origin_state || 'N/A'}</li>
+        <li class="list-group-item"><strong>Phone:</strong> ${user.telephoneno || user.Phone_number1 || 'N/A'}</li>
+        <li class="list-group-item"><strong>State of Origin:</strong> ${user.self_origin_state || user.state_of_origin || 'N/A'}</li>
       </ul>
     `;
   } catch (error) {
